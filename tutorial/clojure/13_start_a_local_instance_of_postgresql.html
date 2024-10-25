@@ -71,8 +71,35 @@ an audience that loves their Datomics and XTDBs, but the rest of this is focused
 data</pre></code>
     </li>
     <li>
-        <h2>Run <code>docker compose up -d</code></h2>
-        <p>This should download start up postgres in the background.</p>
+        <h2>Add a recipe to your <code>Justfile</code> for starting and stopping the database
+        </h2>
+        <code><pre>help:
+    just --list
+
+run:
+    clojure -M -m example.main
+
+nrepl:
+    clojure -M:nREPL -m nrepl.cmdline
+
+format_check:
+    clojure -M:format -m cljfmt.main check src dev
+
+format:
+    clojure -M:format -m cljfmt.main fix src dev
+
+lint:
+    clojure -M:lint -m clj-kondo.main --lint .
+
+<span style="font-weight: bold;">db_up:
+    docker compose up -d
+
+db_down:
+    docker compose down</span></pre></code>
+    </li>
+    <li>
+        <h2>Run <code>just db_up</code></h2>
+        <p>This should download start up postgres in the background. You can use <code>just db_down</code> to stop postgres.</p>
     </li>
 </ul>
 <section>
