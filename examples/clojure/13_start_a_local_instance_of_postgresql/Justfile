@@ -18,3 +18,9 @@ lint:
 
 test:
     clojure -M:dev -m kaocha.runner
+
+db_up:
+    docker compose up -d
+
+db_down:
+    docker compose down
